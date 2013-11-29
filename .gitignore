@@ -2,3 +2,4 @@
 */target/*
 *.iml
 *.pyc
+com_genestack_cluster_lsf_*.h

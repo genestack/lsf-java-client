@@ -17,7 +17,7 @@
 
     <modules>
         <!-- base API module -->
-        <!--<module>genestack-lsf-core</module> -->
+        <module>genestack-lsf-core</module>
     </modules>
 
     <build>
