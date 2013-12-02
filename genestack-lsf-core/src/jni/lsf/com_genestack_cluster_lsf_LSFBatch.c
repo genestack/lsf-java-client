@@ -17,7 +17,7 @@
 #include <string.h>
 
 #include "utils.h"
-#include "com_genestack_cluster_lsf_impl_LSFBatch.h"
+#include "com_genestack_cluster_lsf_LSFBatch.h"
 
 #include <lsf/lsf.h>
 #include <lsf/lsbatch.h>
@@ -35,11 +35,11 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
 
 
 /*
- * Class:     com_genestack_cluster_lsf_impl_LSFBatch
+ * Class:     com_genestack_cluster_lsf_LSFBatch
  * Method:    init
  * Signature: (Ljava/lang/String;)V
  */
-JNIEXPORT void JNICALL Java_com_genestack_cluster_lsf_impl_LSFBatch_init(JNIEnv *env, jobject thiz, jstring appName) {
+JNIEXPORT void JNICALL Java_com_genestack_cluster_lsf_LSFBatch_init(JNIEnv *env, jobject thiz, jstring appName) {
     char *utfName = getUTFString(env, appName);
     int rc = lsb_init(utfName);
     freeUTFString(utfName);
@@ -70,7 +70,7 @@ jobjectArray _hostInfo_internal(JNIEnv *env, char **hosts, const int hostsSize) 
         return NULL;
     }
 
-    jclass cls = (*env)->FindClass(env, "com/genestack/backend/tasks/lsf/model/HostInfoEntry");
+    jclass cls = (*env)->FindClass(env, "com/genestack/cluster/lsf/model/HostInfoEntry");
     if (cls == NULL) {
         return NULL;
     }
@@ -103,11 +103,11 @@ jobjectArray _hostInfo_internal(JNIEnv *env, char **hosts, const int hostsSize) 
 }
 
 /*
- * Class:     com_genestack_cluster_lsf_impl_LSFBatch
+ * Class:     com_genestack_cluster_lsf_LSFBatch
  * Method:    hostInfo
- * Signature: ([Ljava/lang/String;)[Lcom/genestack/backend/tasks/lsf/model/HostInfoEntry;
+ * Signature: ([Ljava/lang/String;)[Lcom/genestack/cluster/lsf/model/HostInfoEntry;
  */
-JNIEXPORT jobjectArray JNICALL Java_com_genestack_cluster_lsf_impl_LSFBatch_hostInfo(JNIEnv *env, jobject thiz, jobjectArray hostsArray) {
+JNIEXPORT jobjectArray JNICALL Java_com_genestack_cluster_lsf_LSFBatch_hostInfo(JNIEnv *env, jobject thiz, jobjectArray hostsArray) {
     char **hosts = NULL;
     int hostsSize = 0;
     if (hostsArray != NULL &&
@@ -120,11 +120,11 @@ JNIEXPORT jobjectArray JNICALL Java_com_genestack_cluster_lsf_impl_LSFBatch_host
 }
 
 /*
- * Class:     com_genestack_cluster_lsf_impl_LSFBatch
+ * Class:     com_genestack_cluster_lsf_LSFBatch
  * Method:    localHostInfo
- * Signature: ()Lcom/genestack/backend/tasks/lsf/model/HostInfoEntry;
+ * Signature: ()Lcom/genestack/cluster/lsf/model/HostInfoEntry;
  */
-JNIEXPORT jobject JNICALL Java_com_genestack_cluster_lsf_impl_LSFBatch_localHostInfo(JNIEnv *env, jobject thiz) {
+JNIEXPORT jobject JNICALL Java_com_genestack_cluster_lsf_LSFBatch_localHostInfo(JNIEnv *env, jobject thiz) {
     jobjectArray result = _hostInfo_internal(env, NULL, 1);
     if (result == NULL) {
         return NULL;
@@ -241,11 +241,11 @@ void _submit_release_request(struct submit *request) {
 }
 
 /*
- * Class:     com_genestack_cluster_lsf_impl_LSFBatch
+ * Class:     com_genestack_cluster_lsf_LSFBatch
  * Method:    submit
- * Signature: (Lcom/genestack/backend/tasks/lsf/model/SubmitRequest;)Lcom/genestack/backend/tasks/lsf/model/SubmitReply;
+ * Signature: (Lcom/genestack/cluster/lsf/model/SubmitRequest;)Lcom/genestack/cluster/lsf/model/SubmitReply;
  */
-JNIEXPORT jobject JNICALL Java_com_genestack_cluster_lsf_impl_LSFBatch_submit(JNIEnv *env, jobject thiz, jobject requestObj) {
+JNIEXPORT jobject JNICALL Java_com_genestack_cluster_lsf_LSFBatch_submit(JNIEnv *env, jobject thiz, jobject requestObj) {
     struct submit request;
     if (_submit_fill_request(env, requestObj, &request) < 0) {
         return NULL;
@@ -301,7 +301,7 @@ JNIEXPORT jobject JNICALL Java_com_genestack_cluster_lsf_impl_LSFBatch_submit(JN
         return NULL;
     }
 
-    jclass cls = (*env)->FindClass(env, "com/genestack/backend/tasks/lsf/model/SubmitReply");
+    jclass cls = (*env)->FindClass(env, "com/genestack/cluster/lsf/model/SubmitReply");
     if (cls == NULL) {
         return NULL;
     }
@@ -338,7 +338,7 @@ jobjectArray _userInfo_internal(JNIEnv *env, char **users, const int usersSize) 
         return NULL;
     }
 
-    jclass cls = (*env)->FindClass(env, "com/genestack/backend/tasks/lsf/model/UserInfoEntry");
+    jclass cls = (*env)->FindClass(env, "com/genestack/cluster/lsf/model/UserInfoEntry");
     if (cls == NULL) {
         return NULL;
     }
@@ -371,11 +371,11 @@ jobjectArray _userInfo_internal(JNIEnv *env, char **users, const int usersSize) 
 }
 
 /*
- * Class:     com_genestack_cluster_lsf_impl_LSFBatch
+ * Class:     com_genestack_cluster_lsf_LSFBatch
  * Method:    userInfo
- * Signature: ([Ljava/lang/String;)[Lcom/genestack/backend/tasks/lsf/model/UserInfoEntry;
+ * Signature: ([Ljava/lang/String;)[Lcom/genestack/cluster/lsf/model/UserInfoEntry;
  */
-JNIEXPORT jobjectArray JNICALL Java_com_genestack_cluster_lsf_impl_LSFBatch_userInfo(JNIEnv *env, jobject thiz, jobjectArray usersArray) {
+JNIEXPORT jobjectArray JNICALL Java_com_genestack_cluster_lsf_LSFBatch_userInfo(JNIEnv *env, jobject thiz, jobjectArray usersArray) {
     char **users = NULL;
     int usersSize = 0;
     if (usersArray != NULL &&
@@ -388,11 +388,11 @@ JNIEXPORT jobjectArray JNICALL Java_com_genestack_cluster_lsf_impl_LSFBatch_user
 }
 
 /*
- * Class:     com_genestack_cluster_lsf_impl_LSFBatch
+ * Class:     com_genestack_cluster_lsf_LSFBatch
  * Method:    currentUserInfo
- * Signature: ()Lcom/genestack/backend/tasks/lsf/model/UserInfoEntry;
+ * Signature: ()Lcom/genestack/cluster/lsf/model/UserInfoEntry;
  */
-JNIEXPORT jobject JNICALL Java_com_genestack_cluster_lsf_impl_LSFBatch_currentUserInfo(JNIEnv *env, jobject thiz) {
+JNIEXPORT jobject JNICALL Java_com_genestack_cluster_lsf_LSFBatch_currentUserInfo(JNIEnv *env, jobject thiz) {
     jobjectArray result = _userInfo_internal(env, NULL, 1);
     if (result == NULL) {
         return NULL;
@@ -415,12 +415,12 @@ void _readJobInfo_internal(
     }
 
     jclass cls = (*env)->GetObjectClass(env, reader);
-    jmethodID readJob = (*env)->GetMethodID(env, cls, "readJob", "(Lcom/genestack/backend/tasks/lsf/model/JobInfoEntry;)Z");
+    jmethodID readJob = (*env)->GetMethodID(env, cls, "readJob", "(Lcom/genestack/cluster/lsf/model/JobInfoEntry;)Z");
     if (readJob == NULL) {
         return;
     }
 
-    cls = (*env)->FindClass(env, "Lcom/genestack/backend/tasks/lsf/model/JobInfoEntry;");
+    cls = (*env)->FindClass(env, "Lcom/genestack/cluster/lsf/model/JobInfoEntry;");
     jmethodID constructor = (*env)->GetMethodID(env, cls, "<init>", "(JLjava/lang/String;IILjava/lang/String;I)V");
 
 
@@ -468,11 +468,11 @@ void _readJobInfo_internal(
 }
 
 /*
- * Class:     com_genestack_cluster_lsf_impl_LSFBatch
+ * Class:     com_genestack_cluster_lsf_LSFBatch
  * Method:    readJobInfo
- * Signature: (Lcom/genestack/backend/tasks/lsf/impl/LSFBatch/JobReader;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V
+ * Signature: (Lcom/genestack/cluster/lsf/impl/LSFBatch/JobReader;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V
  */
-JNIEXPORT void JNICALL Java_com_genestack_cluster_lsf_impl_LSFBatch_readJobInfo(
+JNIEXPORT void JNICALL Java_com_genestack_cluster_lsf_LSFBatch_readJobInfo(
     JNIEnv *env, jobject thiz, jobject reader, jlong jobId, jstring jobName,
     jstring userName, jstring queueName, jstring hostName, jint options
 ) {
