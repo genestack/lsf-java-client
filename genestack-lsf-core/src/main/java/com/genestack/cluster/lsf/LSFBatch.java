@@ -18,21 +18,35 @@ package com.genestack.cluster.lsf;
 import com.genestack.cluster.lsf.model.*;
 
 /**
- * <p>Base class provides Java interface to some LSF batch library (LSBLIB) calls.
- * <p>All methods (and constructors) throw {@link LSFBatchException} on failure.
+ * <p>Base class provides Java interface to LSF batch library (LSBLIB) calls.
+ * <p>All methods throw {@link LSFBatchException} on failure.
+ * <p>When {@code LSFBatch} instance is being created, it gets current application
+ * name using {@link System#getProperty(String)} with key {@link #LSF_APPLICATION_NAME}.
+ * If application name property exists, then LSBLIB transaction information
+ * is written to the logfile with that name.
+ * If application name property is not set, then logfile {@code $LSF_LOGDIR/bcmd}
+ * receives LSBLIB transaction information.
  */
-public class LSFBatch {
+public final class LSFBatch {
+    public static final String LSF_APPLICATION_NAME = "lsf.application.name";
+
+    private static LSFBatch ourInstance;
+
     /**
-     * <p>Creates {@code LSFBatch} instance and initializes the LSF batch
-     * library (LSBLIB).
-     * <p>If {@code appName} holds the name of your application, a logfile with
-     * the same name as your application receives LSBLIB transaction information.
-     * If {@code appName} is {@code null}, the logfile {@code $LSF_LOGDIR/bcmd}
-     * receives LSBLIB transaction information.
-     * @param appName    The name of your application
+     * <p>Returns {@code LSFBatch} singleton instance.
+     * <p>Initializes native core of the LSF batch library (LSBLIB)
+     * on the first call.
      */
-    public LSFBatch(String appName) {
-        System.loadLibrary("lsb4j");
+    public static LSFBatch getInstance() {
+        if (ourInstance == null) {
+            System.loadLibrary("lsb4j");
+            final String appName = System.getProperty(LSF_APPLICATION_NAME);
+            ourInstance = new LSFBatch(appName);
+        }
+        return ourInstance;
+    }
+
+    private LSFBatch(String appName) {
         init(appName);
     }
 
