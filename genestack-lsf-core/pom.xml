@@ -32,7 +32,6 @@
                         </goals>
                         <configuration>
                             <environmentVariables>
-                                <JAVA_HOME>${java.home}</JAVA_HOME>
                                 <CLASSPATH>${project.build.outputDirectory}</CLASSPATH>
                             </environmentVariables>
                             <workingDirectory>${basedir}/src/jni/lsf</workingDirectory>
