@@ -35,5 +35,6 @@ Copyright (c) 2011-2018 Genestack Limited. All Rights Reserved.
 
 This program is licensed under the terms of the [GNU Lesser General Public License],
 also included in our repository in the COPYING file.
+(Until December 2018 this program was licensed under Eclipse Public License version 1.0).
 
 [GNU Lesser General Public License]: https://www.gnu.org/licenses/lgpl-3.0.en.html
