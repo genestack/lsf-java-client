@@ -1,9 +1,11 @@
 # LSF Java client library
 
-This project provides a Java API for LSF, [IBM Platform Computing Load Sharing Facility]( http://www.ibm.com/systems/technicalcomputing/platformcomputing/products/lsf/).
+This project provides a Java API for LSF, [IBM Platform Computing Load Sharing Facility].
 
 Since the original C API for LSF is not thread-safe, this API provides an `LSFBatch`
- singleton class with required synchronization mechanisms.
+singleton class with required synchronization mechanisms.
+
+[IBM Platform Computing Load Sharing Facility]: http://www.ibm.com/systems/technicalcomputing/platformcomputing/products/lsf/
 
 ## Project Setup
 
@@ -23,19 +25,15 @@ your Java applications.
 
 ## Contacts
 
-This code was originally written by Vasiliy Bout. Please send any questions to lsf-java-client@genestack.com.
+Send any questions to [lsf-java-client@genestack.com].
 
-## LICENSE
+[lsf-java-client@genestack.com]: mailto:lsf-java-client@genestack.com
 
-This work is copyright (c) 2011-2013 Genestack Limited. All Rights Reserved.
+## License
 
-All rights reserved. This program and the accompanying materials
-are made available under the terms of the Eclipse Public License v1.0
-which accompanies this distribution, and is available at
-http://www.eclipse.org/legal/epl-v10.html
+Copyright (c) 2011-2018 Genestack Limited. All Rights Reserved.
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+This program is licensed under the terms of the [GNU Lesser General Public License],
+also included in our repository in the COPYING file.
+
+[GNU Lesser General Public License]: https://www.gnu.org/licenses/lgpl-3.0.en.html
