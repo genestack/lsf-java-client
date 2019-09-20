@@ -47,7 +47,7 @@ void *callocEx(JNIEnv *env, size_t nelem, size_t elsize) {
 
 
 void throwLSFBatchException(JNIEnv *env, const char *msg) {
-    jclass cls = (*env)->FindClass(env, "com/genestack/cluster/lsf/impl/LSFBatchException");
+    jclass cls = (*env)->FindClass(env, "com/genestack/cluster/lsf/LSFBatchException");
     if (cls == NULL) {
         (*env)->ExceptionDescribe(env);
         return;

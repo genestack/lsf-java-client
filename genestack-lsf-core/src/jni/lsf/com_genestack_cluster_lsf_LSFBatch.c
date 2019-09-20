@@ -205,6 +205,7 @@ int _submit_fill_request(JNIEnv *env, jobject obj, struct submit *request) {
         || getIntField(env, cls, obj, "maxNumProcessors", &request->maxNumProcessors) < 0
         || getStringField(env, cls, obj, "loginShell", &request->loginShell) < 0
         || getStringField(env, cls, obj, "userGroup", &request->userGroup) < 0
+        || getStringField(env, cls, obj, "sla", &request->sla) < 0
         || getIntField(env, cls, obj, "options3", &request->options3) < 0
         || getStringField(env, cls, obj, "postExecCmd", &request->postExecCmd) < 0
         || getStringField(env, cls, obj, "cwd", &request->cwd) < 0

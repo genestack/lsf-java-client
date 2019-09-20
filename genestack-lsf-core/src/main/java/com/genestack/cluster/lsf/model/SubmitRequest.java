@@ -204,7 +204,15 @@ public class SubmitRequest {
     int     userPriority
     char *     rsvId
     char *     jobGroup
-    char *     sla
+*/
+
+    /**
+     * FIXME: JavaDoc
+     */
+    public String sla;
+
+/*
+    // TODO: implement
     char *     extsched
     int     warningTimePeriod
     char *     warningAction
