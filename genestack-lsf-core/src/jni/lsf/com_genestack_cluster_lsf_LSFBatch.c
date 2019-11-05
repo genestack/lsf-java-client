@@ -238,6 +238,7 @@ void _submit_release_request(struct submit *request) {
     freeUTFString(request->projectName);
     freeUTFString(request->loginShell);
     freeUTFString(request->userGroup);
+    freeUTFString(request->sla);
     freeUTFString(request->postExecCmd);
     freeUTFString(request->cwd);
     freeUTFString(request->jobDescription);
